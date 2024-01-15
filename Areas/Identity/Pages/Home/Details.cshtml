@@ -1,0 +1,55 @@
+﻿@page
+@model JustABlog.Areas.Identity.Pages.Home.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    .article {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .article h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .article img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .article p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .article hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #eee;
+        }
+</style>
+
+<div class="article">
+    @if (!string.IsNullOrEmpty(Model.BlogPost.Image))
+    {
+        <img src="/images/blog/@Model.BlogPost.Image" alt="Blog Image" />
+    }
+
+    <h1>@Html.DisplayFor(model => model.BlogPost.Title)</h1>
+    <p>Author: @Html.DisplayFor(model => model.BlogPost.Author)</p>
+    <p>Date: @Html.DisplayFor(model => model.BlogPost.DateAndTime)</p>
+
+    <p>@Html.Raw(Model.BlogPost.Content)</p>
+
+    <hr />
+</div>

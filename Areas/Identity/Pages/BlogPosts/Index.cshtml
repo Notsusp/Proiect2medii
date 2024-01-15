@@ -1,0 +1,64 @@
+﻿@page
+@model JustABlog.Areas.Identity.Pages.BlogPosts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogPost[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogPost[0].Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogPost[0].Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogPost[0].DateAndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogPost[0].Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BlogPost) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+                <td class="blog-post-content">
+                    @Html.Raw(item.Content.Length > 500 ? $"{item.Content.Substring(0, 500)}..." : item.Content)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTime)
+            </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="/images/blog/@item.Image" alt="Blog Image" style="max-width: 100px; max-height: 100px;" />
+                    }
+                </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

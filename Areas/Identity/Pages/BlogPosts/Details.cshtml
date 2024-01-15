@@ -1,0 +1,48 @@
+﻿@page
+@model JustABlog.Areas.Identity.Pages.BlogPosts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Model.BlogPost.Title</title>
+    <style>
+        .blog-content {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+            .blog-content h1 {
+                color: #333;
+            }
+
+            .blog-content p {
+                color: #666;
+            }
+
+            .blog-content img {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+    </style>
+</head>
+<body>
+    <div class="blog-content">
+        <img src="/images/blog/Image1.png" alt="Large Blog Image" />
+        <h1>@Model.BlogPost.Title</h1>
+        <p>Published on: @Model.BlogPost.DateAndTime.ToShortDateString()</p>
+        <p>Author: @Model.BlogPost.Author</p>
+    </div>
+
+    <div class="blog-content">
+        @Html.Raw(Model.BlogPost.Content)
+    </div>
+</body>

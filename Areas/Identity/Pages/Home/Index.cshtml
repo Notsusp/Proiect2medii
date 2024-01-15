@@ -1,0 +1,82 @@
+﻿@page "/"
+@model JustABlog.Areas.Identity.Pages.Home.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    .blog-posts {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .blog-post {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .blog-post h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+    .blog-post-content {
+        color: #555;
+    }
+
+    .blog-post img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+
+    .read-more {
+        display: block;
+        margin-top: 10px;
+    }
+
+        .read-more a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .read-more a:hover {
+                text-decoration: underline;
+            }
+
+    hr {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border: 0;
+        border-top: 1px solid #eee;
+    }
+</style>
+<h1>Welcome</h1>
+
+<div class="blog-posts">
+    @foreach (var item in Model.BlogPost)
+    {
+        <div class="blog-post">
+            <h2>
+                <a asp-page="./Details" asp-route-id="@item.Id">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </a>
+            </h2>
+            <p class="blog-post-content">
+                @Html.Raw(item.Content.Length > 500 ? $"{item.Content.Substring(0, 500)}..." : item.Content)
+            </p>
+            <p>Author: @Html.DisplayFor(modelItem => item.Author)</p>
+            <p>Date: @Html.DisplayFor(modelItem => item.DateAndTime)</p>
+            @if (!string.IsNullOrEmpty(item.Image))
+            {
+                <img src="/images/blog/@item.Image" alt="Blog Image" style="max-width: 100%; height: auto;" />
+            }
+            <hr />
+        </div>
+    }
+</div>
+
