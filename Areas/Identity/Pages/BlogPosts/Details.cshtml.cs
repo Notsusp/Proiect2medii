@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace JustABlog.Areas.Identity.Pages.BlogPosts
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DetailsModel : PageModel
     {
         private readonly JustABlog.Data.JAuthDbContext _context;
