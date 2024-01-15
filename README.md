@@ -7,11 +7,11 @@ Doar Adminii pot intra in partea de administrare a site-ului (/Identity/BlogPost
 
 Credentiale: 
 
-#UserAdmin :admin@admin.com
-#Parola: Test123
+# UserAdmin :admin@admin.com
+# Parola: Test123
 
-#User: User@user.com
-#Parola: testtest
+# User: User@user.com
+# Parola: testtest
 
 
 
