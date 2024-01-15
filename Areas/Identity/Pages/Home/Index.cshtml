@@ -54,6 +54,28 @@
         border: 0;
         border-top: 1px solid #eee;
     }
+
+    .blog-post-link {
+        color: #3498db;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .blog-post-link:hover {
+            color: #2078af;
+        }
+
+    h2 a {
+        color: #3498db;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+    }
+
+        h2 a:hover {
+            color: /* your hover color */;
+        }
+
 </style>
 <h1>Welcome</h1>
 
@@ -61,6 +83,11 @@
     @foreach (var item in Model.BlogPost)
     {
         <div class="blog-post">
+            @if (!string.IsNullOrEmpty(item.Image))
+            {
+                <img src="/images/blog/@item.Image" alt="Blog Image" style="max-width: 100%; height: auto;" />
+            }
+            <hr />
             <h2>
                 <a asp-page="./Details" asp-route-id="@item.Id">
                     @Html.DisplayFor(modelItem => item.Title)
@@ -71,11 +98,7 @@
             </p>
             <p>Author: @Html.DisplayFor(modelItem => item.Author)</p>
             <p>Date: @Html.DisplayFor(modelItem => item.DateAndTime)</p>
-            @if (!string.IsNullOrEmpty(item.Image))
-            {
-                <img src="/images/blog/@item.Image" alt="Blog Image" style="max-width: 100%; height: auto;" />
-            }
-            <hr />
+            
         </div>
     }
 </div>
